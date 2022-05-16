@@ -1,0 +1,23 @@
+---
+- name: Setup dev system
+  hosts: localhost
+  vars:
+    python_version: "python3.10"
+  tasks:
+    - name: Update and upgrade apt packages
+      become: yes
+      apt:
+        upgrade: "yes"
+        update_cache: yes
+        cache_valid_time: 86400 # One day
+    - name: Install {{ python_version }}
+      become: yes
+      apt:
+        name: "{{ python_version }}"
+    - name: Add pythonalias for my user
+      lineinfile:
+        path=/home/grza/.bashrc
+        line="alias python='{{ python_version }}'"
+        state=present
+        insertafter=EOF
+        create=True 

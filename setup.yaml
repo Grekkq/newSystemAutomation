@@ -21,3 +21,10 @@
         state=present
         insertafter=EOF
         create=True 
+    - name: Add relative line numbers in vi
+      lineinfile:
+        path=/home/grza/.vimrc
+        line="set relativenumber"
+        state=present
+        insertafter=EOF
+        create=True

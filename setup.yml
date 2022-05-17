@@ -2,7 +2,15 @@
 - name: Setup dev system
   hosts: localhost
   vars:
-    python_version: "python3.10"
+    #python_version: "python3.10"
+
+  roles:
+    - role: diodonfrost.python
+      become: yes
+      vars:
+        python_version: 3.10.4
+        python_path: "/usr/local/python3.10" # TODO: change later to default when issue resolved
+        
   tasks:
     - name: Update and upgrade apt packages
       become: yes
@@ -11,15 +19,10 @@
         update_cache: yes
         cache_valid_time: 86400 # One day
 
-    - name: Install {{ python_version }}
-      become: yes
-      apt:
-        name: "{{ python_version }}"
-
-    - name: Add pythonalias for my user
+    - name: Add python alias for my user # TODO: change later to default when issue resolved
       lineinfile:
         path=/home/grza/.bashrc
-        line="alias python='{{ python_version }}'"
+        line="alias python='/usr/local/python2.10/bin/python3.10'" 
         state=present
         insertafter=EOF
         create=True 

@@ -47,8 +47,9 @@
         create=True
 
     - name: Add GOPATH
-      lineinfile: path=/home/{{ username }}/.bashrc
-        line="export GOPATH=/usr/local/go"
-        state=present
-        insertafter=EOF
-        create=True
+      blockinfile: 
+        path: /home/{{ username }}/.bashrc
+        create: yes
+        block: |
+          export GOPATH=/home/{{ username }}/go
+          export PATH=$PATH:$GOPATH/bin

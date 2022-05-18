@@ -1,2 +1,5 @@
 ### Ansible ###
 *.retry
+
+# Ignore vscode code-workspaces
+*.code-workspace

@@ -50,6 +50,9 @@
       blockinfile: 
         path: /home/{{ username }}/.bashrc
         create: yes
+        marker: '# {mark} ANSIBLE MANAGED BLOCK'
+        marker_begin: "Go config"
+        marker_end: "Go config end"
         block: |
           export GOPATH=/home/{{ username }}/go
           export PATH=$PATH:$GOPATH/bin

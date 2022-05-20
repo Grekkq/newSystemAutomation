@@ -1,5 +1,10 @@
 ---
 - hosts: docker
+  vars_prompt:
+  - name: username
+    private: no
+    prompt: "Provide username"
+    default: "grza"
   become: yes
   tasks:
     
@@ -34,12 +39,24 @@
         - docker-ce
         - docker-ce-cli
         - containerd.io
+        - docker-compose
     
     - name: Make sure docker was started
       service:
         name: docker
         state: started
         enabled: yes
+
+    - name: Add group for docker
+      group:
+        name: docker
+        state: present
+
+    - name: Add user to docker group
+      user:
+        name: "{{ username }}"
+        append: yes
+        group: docker
     
   handlers:
     - name: Restart docker

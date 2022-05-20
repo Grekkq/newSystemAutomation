@@ -54,3 +54,5 @@
         block: |
           export GOPATH=/home/{{ username }}/go
           export PATH=$PATH:$GOPATH/bin
+
+- import_playbook: docker.yml

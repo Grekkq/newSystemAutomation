@@ -1,0 +1,5 @@
+[localdev]
+localhost ansible_connection=local
+
+[docker]
+localhost

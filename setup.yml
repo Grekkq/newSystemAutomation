@@ -1,6 +1,6 @@
 ---
 - name: Setup dev system
-  hosts: localhost
+  hosts: localdev
   vars_prompt:
     - name: python_short_version
       private: no
@@ -45,10 +45,10 @@
         create: True
 
     - name: Add GOPATH
-      blockinfile: 
+      blockinfile:
         path: /home/{{ username }}/.bashrc
         create: yes
-        marker: '# {mark} ANSIBLE MANAGED BLOCK'
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
         marker_begin: "Go config"
         marker_end: "Go config end"
         block: |

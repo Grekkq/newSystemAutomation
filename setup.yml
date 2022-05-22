@@ -24,6 +24,8 @@
         python_version: "{{ python_short_long }}"
         python_path: "/usr/local/python{{ python_short_version }}" # TODO: change later to default when issue resolved
 
+    - role: gantsign.golang
+
   tasks:
     - name: Update and upgrade apt packages
       become: yes
